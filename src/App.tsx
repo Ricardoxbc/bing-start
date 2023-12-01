@@ -12,7 +12,7 @@ export default function App() {
       <nav>
         <Links />
       </nav>
-      <main className="px-14">
+      <main className="px-8">
         <News />
       </main>
     </>
@@ -24,7 +24,7 @@ export function News() {
   return (
     <div className="mx-auto my-2 flex w-full max-w-7xl flex-col gap-2 rounded-xl bg-white px-4 py-1">
       <div className="flex flex-row items-center justify-between">
-        <div className="flex flex-row items-center justify-start gap-4 max-w-full overflow-hidden mr-4">
+        <div className="mr-4 flex max-w-full flex-row items-center justify-start gap-4 overflow-hidden">
           <a
             className="rounded-lg bg-white px-3 py-1.5 text-sm font-semibold text-blue-600 ring-1 ring-slate-300"
             href="#"
@@ -43,13 +43,29 @@ export function News() {
           <span className="text-sm max-sm:hidden">Personalizar</span>
         </button>
       </div>
-      <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(300px,1fr))] max-sm:grid-cols-1 gap-3">
+      <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-3 max-sm:grid-cols-1">
         <NewsCardLarge />
         <NewsCardDetails />
-        <NewsCardSimple imageUrl={`https://picsum.photos/${Math.floor(Math.random() * 200 + 200)}`}/>
-        <NewsCardSimple imageUrl={`https://picsum.photos/${Math.floor(Math.random() * 200 + 200)}`}/>
-        <NewsCardSimple imageUrl={`https://picsum.photos/${Math.floor(Math.random() * 200 + 200)}`}/>
-        <NewsCardSimple imageUrl={`https://picsum.photos/${Math.floor(Math.random() * 200 + 200)}`}/>
+        <NewsCardSimple
+          imageUrl={`https://picsum.photos/${Math.floor(
+            Math.random() * 200 + 200,
+          )}`}
+        />
+        <NewsCardSimple
+          imageUrl={`https://picsum.photos/${Math.floor(
+            Math.random() * 200 + 200,
+          )}`}
+        />
+        <NewsCardSimple
+          imageUrl={`https://picsum.photos/${Math.floor(
+            Math.random() * 200 + 200,
+          )}`}
+        />
+        <NewsCardSimple
+          imageUrl={`https://picsum.photos/${Math.floor(
+            Math.random() * 200 + 200,
+          )}`}
+        />
       </div>
     </div>
   );
@@ -97,7 +113,7 @@ export function NewsCardLarge({
   title = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque,  distinctio sit amet consectetur adipisicing elit. Eaque!",
 }) {
   return (
-    <div className="relative sm:col-span-2 flex h-72 flex-col justify-end rounded-lg bg-white">
+    <div className="relative flex h-72 flex-col justify-end rounded-lg bg-white sm:col-span-2">
       <div className="absolute inset-0 z-0 h-full w-full overflow-clip">
         <img className="h-auto w-full" src={imageUrl} alt="" />
       </div>
@@ -148,10 +164,30 @@ export function NewsCardDetails() {
         </button>
       </div>
       <div className="flex flex-col gap-1.5">
-        <CardDetailItem currentValue={35950.89} name="" token="DJI" trend={1.47} />
-        <CardDetailItem currentValue={57557.13} name="Índice bursátil" token="UPKoin" trend={-0.11} />
-        <CardDetailItem currentValue={35.42} name="Dólar estadounidense/Bolivares" token="USD/VES" trend={0} />
-        <CardDetailItem currentValue={4007.57} name="Dólar usd/Pesos col" token="USD/COP" trend={0} />
+        <CardDetailItem
+          currentValue={35950.89}
+          name=""
+          token="DJI"
+          trend={1.47}
+        />
+        <CardDetailItem
+          currentValue={57557.13}
+          name="Índice bursátil"
+          token="UPKoin"
+          trend={-0.11}
+        />
+        <CardDetailItem
+          currentValue={35.42}
+          name="Dólar estadounidense/Bolivares"
+          token="USD/VES"
+          trend={0}
+        />
+        <CardDetailItem
+          currentValue={4007.57}
+          name="Dólar usd/Pesos col"
+          token="USD/COP"
+          trend={0}
+        />
         <CardDetailItem currentValue={38.57} name="" token="DJI" trend={1.47} />
       </div>
     </div>
@@ -165,7 +201,7 @@ export function CardDetailItem({
   currentValue = 12345.6,
 }) {
   return (
-    <div className="grid grid-cols-[6fr_2fr_2fr_1fr] text-slate-700 items-center rounded-md bg-slate-100 px-2 py-1 hover:bg-white hover:bg-opacity-80">
+    <div className="grid grid-cols-[6fr_2fr_2fr_1fr] overflow-hidden items-center rounded-md bg-slate-100 px-2 py-1 text-slate-700 hover:bg-white hover:bg-opacity-80">
       <div className="flex flex-col">
         <div className="flex flex-row items-center gap-2">
           <span className="text-sm font-semibold">{token}</span>
@@ -174,9 +210,12 @@ export function CardDetailItem({
           </span>
         </div>
         <span
-          className={clsx("text-[.6rem] font-semibold whitespace-nowrap overflow-hidden text-ellipsis", {
-            "text-green-600": trend > 1,
-          })}
+          className={clsx(
+            "overflow-hidden text-ellipsis whitespace-nowrap text-[.6rem] font-semibold",
+            {
+              "text-green-600": trend > 1,
+            },
+          )}
         >
           {trend > 1 ? "Aumentando rápidamente" : name}
         </span>
